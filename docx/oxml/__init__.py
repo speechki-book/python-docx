@@ -223,6 +223,9 @@ register_element_cls('w:webHidden',  CT_OnOff)
 from .text.paragraph import CT_P  # noqa
 register_element_cls('w:p', CT_P)
 
+from .text.hyperlink import CT_Hyperlink  # noqa
+register_element_cls('w:hyperlink', CT_Hyperlink)
+
 from .text.parfmt import (  # noqa
     CT_Ind,
     CT_Jc,
