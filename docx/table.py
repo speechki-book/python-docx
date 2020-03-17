@@ -16,6 +16,7 @@ class Table(Parented):
     """
     Proxy class for a WordprocessingML ``<w:tbl>`` element.
     """
+
     def __init__(self, tbl, parent):
         super(Table, self).__init__(parent)
         self._element = self._tbl = tbl
@@ -196,6 +197,18 @@ class _Cell(BlockItemContainer):
         super(_Cell, self).__init__(tc, parent)
         self._tc = self._element = tc
 
+    def add_heading(self, text="", level=1):
+        """Return a heading paragraph newly added to the end of the document.
+        The heading paragraph will contain *text* and have its paragraph style
+        determined by *level*. If *level* is 0, the style is set to `Title`. If *level*
+        is 1 (or omitted), `Heading 1` is used. Otherwise the style is set to `Heading
+        {level}`. Raises |ValueError| if *level* is outside the range 0-9.
+        """
+        if not 0 <= level <= 9:
+            raise ValueError("level must be in range 0-9, got %d" % level)
+        style = "Title" if level == 0 else "Heading %d" % level
+        return self.add_paragraph(text, style)
+
     def add_paragraph(self, text='', style=None):
         """
         Return a paragraph newly added to the end of the content in this
@@ -303,6 +316,7 @@ class _Column(Parented):
     """
     Table column
     """
+
     def __init__(self, gridCol, parent):
         super(_Column, self).__init__(parent)
         self._gridCol = gridCol
@@ -346,6 +360,7 @@ class _Columns(Parented):
     Sequence of |_Column| instances corresponding to the columns in a table.
     Supports ``len()``, iteration and indexed access.
     """
+
     def __init__(self, tbl, parent):
         super(_Columns, self).__init__(parent)
         self._tbl = tbl
@@ -389,6 +404,7 @@ class _Row(Parented):
     """
     Table row
     """
+
     def __init__(self, tr, parent):
         super(_Row, self).__init__(parent)
         self._tr = self._element = tr
@@ -445,6 +461,7 @@ class _Rows(Parented):
     Sequence of |_Row| objects corresponding to the rows in a table.
     Supports ``len()``, iteration, indexed access, and slicing.
     """
+
     def __init__(self, tbl, parent):
         super(_Rows, self).__init__(parent)
         self._tbl = tbl
