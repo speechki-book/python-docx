@@ -34,4 +34,5 @@ def _default_docx_path():
     Return the path to the built-in default .docx package.
     """
     _thisdir = os.path.split(__file__)[0]
-    return os.path.join(_thisdir, 'templates', 'default.docx')
+    # return os.path.join(_thisdir, 'templates', 'default.docx')
+    return os.path.join(_thisdir, 'templates', 'RevvDocx', 'sample-revv.docx')
