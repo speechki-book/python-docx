@@ -18,6 +18,14 @@ oxml_parser = etree.XMLParser(remove_blank_text=True, resolve_entities=False)
 oxml_parser.set_element_class_lookup(element_class_lookup)
 
 
+def remove_hyperlink_tags(xml):
+    import re
+    text = xml.decode("utf-8")
+    text = text.replace("</w:hyperlink>", "")
+    text = re.sub('<w:hyperlink[^>]*>', "", text)
+    return text.encode("utf-8")
+
+
 def parse_xml(xml):
     """
     Return root lxml element obtained by parsing XML character string in
@@ -25,7 +33,7 @@ def parse_xml(xml):
     parser is used, so custom element classes are produced for elements in
     *xml* that have them.
     """
-    root_element = etree.fromstring(xml, oxml_parser)
+    root_element = etree.fromstring(remove_hyperlink_tags(xml), oxml_parser)
     return root_element
 
 
