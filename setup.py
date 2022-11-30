@@ -37,7 +37,7 @@ LICENSE = text_of('LICENSE')
 PACKAGES = find_packages(exclude=['tests', 'tests.*'])
 PACKAGE_DATA = {'docx': ['templates/*.xml', 'templates/*.docx']}
 
-INSTALL_REQUIRES = ['lxml>=2.3.2']
+INSTALL_REQUIRES = ['lxml>=4.6.3,<5.0.0']
 TEST_SUITE = 'tests'
 TESTS_REQUIRE = ['behave', 'mock', 'pyparsing', 'pytest']
 
@@ -54,6 +54,12 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     'Topic :: Office/Business :: Office Suites',
     'Topic :: Software Development :: Libraries'
 ]
